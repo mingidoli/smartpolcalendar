@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SmartPolCalendar</string>
+    <string-array name="duty_options">
+        <item>주</item>
+        <item>야</item>
+        <item>비</item>
+        <item>휴</item>
+    </string-array>
+</resources>
