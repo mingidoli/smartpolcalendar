@@ -1,75 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <!-- 주중 (월~금) 근무 입력 -->
-        <TextView
-            android:text="주중 패턴 (월~금)"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <!-- 선택 방식 -->
+        <RadioGroup
+            android:id="@+id/radioPatternType"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
 
-            <Spinner android:id="@+id/spMon"
+            <RadioButton
+                android:id="@+id/radioWeekday"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="요일별 설정" />
 
-            <Spinner android:id="@+id/spTue"
+            <RadioButton
+                android:id="@+id/radioCycle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="순환형 패턴" />
+        </RadioGroup>
 
-            <Spinner android:id="@+id/spWed"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+        <!-- 요일별 설정 -->
+        <LinearLayout
+            android:id="@+id/layoutWeekday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <Spinner android:id="@+id/spThu"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:text="월~금 근무"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
 
-            <Spinner android:id="@+id/spFri"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:orientation="horizontal">
+
+                <Spinner android:id="@+id/spMon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"/>
+
+                <Spinner android:id="@+id/spTue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"/>
+
+                <Spinner android:id="@+id/spWed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"/>
+
+                <Spinner android:id="@+id/spThu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"/>
+
+                <Spinner android:id="@+id/spFri"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토~일 근무"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner android:id="@+id/spSat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"/>
+
+                <Spinner android:id="@+id/spSun"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- 주말 (토~일) 근무 입력 -->
-        <TextView
-            android:text="주말 패턴 (토~일)"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
+        <!-- 순환형 패턴 -->
         <LinearLayout
-            android:orientation="horizontal"
+            android:id="@+id/layoutCycle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:visibility="gone">
 
-            <Spinner android:id="@+id/spSat"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:text="순환형 근무 패턴 (쉼표로 구분)"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
 
-            <Spinner android:id="@+id/spSun"
-                android:layout_width="0dp"
+            <EditText
+                android:id="@+id/etCycleInput"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:hint="예: 주,야,비,휴"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- 저장 버튼 -->
@@ -78,6 +145,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="패턴 저장하기"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#0066CC"
             android:layout_marginTop="24dp"/>
     </LinearLayout>
 </ScrollView>
