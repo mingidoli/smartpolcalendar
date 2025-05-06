@@ -24,8 +24,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".DutyCompareInputActivity" />
+        <activity android:name=".DutyCompareResultActivity" />
         <!-- ✅ DutyPatternActivity 추가 -->
         <activity android:name=".DutyPatternActivity" />
+
 
     </application>
 

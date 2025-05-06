@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- 제목 -->
+    <TextView
+        android:text="2025년 5월 근무 비교"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginBottom="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000" />
+
+    <!-- 테이블 스크롤 영역 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <TableLayout
+                android:id="@+id/tableResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:background="#F5F5F5"
+                android:padding="4dp" />
+        </HorizontalScrollView>
+    </ScrollView>
+
+    <!-- 공통 비번일 표시 -->
+    <TextView
+        android:id="@+id/textCommonDays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="공통 비번일:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#0066CC"
+        android:layout_marginTop="8dp"
+        android:padding="4dp" />
+</LinearLayout>

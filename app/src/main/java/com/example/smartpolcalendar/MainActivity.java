@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -12,8 +13,9 @@ import androidx.viewpager2.widget.ViewPager2;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_PATTERN = 1001;
+
     private TextView textMonthYear;
-    private Button btnSetPattern;
+    private Button btnSetPattern, btnCompareDuty;
     private ViewPager2 viewPagerCalendar;
     private SharedPreferences prefs;
 
@@ -30,12 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         textMonthYear = findViewById(R.id.textMonthYear);
         btnSetPattern = findViewById(R.id.btnSetPattern);
+        btnCompareDuty = findViewById(R.id.btnCompareDuty); // 새로운 버튼
         viewPagerCalendar = findViewById(R.id.viewPagerCalendar);
         prefs = getSharedPreferences("DutyPrefs", MODE_PRIVATE);
 
         loadSavedPatterns();
 
-        CalendarMonthAdapter adapter = new CalendarMonthAdapter(this, patternType, weekdayPattern, weekendPattern, cyclePattern, baseDate);
+        CalendarMonthAdapter adapter = new CalendarMonthAdapter(
+                this, patternType, weekdayPattern, weekendPattern, cyclePattern, baseDate);
         viewPagerCalendar.setAdapter(adapter);
 
         viewPagerCalendar.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -53,11 +57,17 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, DutyPatternActivity.class);
             startActivityForResult(intent, REQUEST_PATTERN);
         });
+
+        btnCompareDuty.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, DutyCompareInputActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == REQUEST_PATTERN && resultCode == RESULT_OK && data != null) {
             SharedPreferences.Editor editor = prefs.edit();
             patternType = data.getStringExtra("patternType");
@@ -90,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
 
             editor.apply();
 
-            CalendarMonthAdapter adapter = new CalendarMonthAdapter(this, patternType, weekdayPattern, weekendPattern, cyclePattern, baseDate);
+            CalendarMonthAdapter adapter = new CalendarMonthAdapter(
+                    this, patternType, weekdayPattern, weekendPattern, cyclePattern, baseDate);
             viewPagerCalendar.setAdapter(adapter);
             viewPagerCalendar.setCurrentItem(0, false);
         }
